@@ -1,58 +1,51 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <v-card>
+    <v-tabs
+      v-model="tab"
+      background-color="primary"
+      dark
+    >
+      <v-tab
+        v-for="item in items"
+        :key="item.tab"
+      >
+        {{ item.tab }}
+      </v-tab>
+    </v-tabs>
+
+    <v-tabs-items v-model="tab">
+      <v-tab-item
+        v-for="item in items"
+        :key="item.tab"
+      >
+        <Item :key="item.tab" :tab="parseInt(tab)" />
+      </v-tab-item>
+    </v-tabs-items>
+  </v-card>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  import Vue from 'vue'
+  import DatetimePicker from 'vuetify-datetime-picker';
+  Vue.use(DatetimePicker)
+  import Item from "./Item";
+  export default {
+    name: 'HelloWorld',
+    components: {Item},
+    data: () => ({
+      tab: 0,
+      items: [
+        { tab: 'One', content: 'Tab 1 Content' },
+        { tab: 'Two', content: 'Tab 2 Content' },
+        { tab: 'Three', content: 'Tab 3 Content' },
+        { tab: 'Four', content: 'Tab 4 Content' },
+        { tab: 'Five', content: 'Tab 5 Content' },
+        { tab: 'Six', content: 'Tab 6 Content' },
+        { tab: 'Seven', content: 'Tab 7 Content' },
+        { tab: 'Eight', content: 'Tab 8 Content' },
+        { tab: 'Nine', content: 'Tab 9 Content' },
+        { tab: 'Ten', content: 'Tab 10 Content' },
+      ],
+    }),
   }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
