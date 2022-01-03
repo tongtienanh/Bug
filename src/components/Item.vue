@@ -10,7 +10,7 @@
 <script>
     export default {
         name: "Item",
-        props: ["tab"],
+        props: ["tab", "current"],
         data: function () {
             return {
                 scheduleInfo: null
@@ -33,9 +33,9 @@
             console.log(`${this.tab} is updated.`);
         },
         watch: {
-            tab: function (val, old) {
+            current: function (val, old) {
                 console.log(`New: ${val}, ${old}`);
-                if (this.tab == 1) {
+                if (this.tab == val) {
                     this.fetchData();
                 }
             }

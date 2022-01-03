@@ -15,10 +15,10 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item
-        v-for="item in items"
+        v-for="(item, index) in items"
         :key="item.tab"
       >
-        <Item :key="item.tab" :tab="parseInt(tab)" />
+        <Item :key="item.tab" :current="tab" :tab="index" />
       </v-tab-item>
     </v-tabs-items>
   </v-card>
