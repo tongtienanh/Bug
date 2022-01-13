@@ -22,8 +22,8 @@
                 type="text"
                 id="nameHomework"
                 clearable
-                 @click:clear="onClearClicked"
-                v-model="datesAll"
+                @click:clear="onClearClicked"
+                v-model="dateRangeText"
                 readonly
                 v-bind="attrs"
                 v-on="on"
@@ -35,7 +35,7 @@
             <v-card style="z-index: 10; margin: 0">
               <v-tabs v-model="tab" class="tab-item">
                 <v-tabs-slider color="yellow"></v-tabs-slider>
-                <v-tab @click="changeTab"> Chọn lịch lẻ </v-tab>
+                <v-tab> Chọn lịch lẻ </v-tab>
                 <v-tab> Chọn khoảng thời gian </v-tab>
               </v-tabs>
               <v-tabs-items v-model="tab">
@@ -43,8 +43,7 @@
                   <v-date-picker
                     v-model="date"
                     no-title
-                    @input="save(date)"
-                    :events="datesAll"
+                    multiple
                     event-color="blue lighten-1"
                     class="pick-odd"
                   >
@@ -101,36 +100,29 @@ export default {
   data() {
     return {
       tab: null,
-      date: null,
+      date: [],
       datesAll: [],
       pickDate: false,
       dates: [],
     };
   },
   created() {},
-  methods: {
-    save: function(date) {
-      if(this.datesAll ==null ){
-        this.datesAll = []
+  computed: {
+    dateRangeText() {
+      if (this.tab == 1) {
+        return this.dates.join(' ~ ');
       }
-      var index = this.datesAll.findIndex((x) => x === date);
 
-      if (index === -1) {
-        this.datesAll.push(date);
-      } else {
-        console.log('aaaaaaaaaa');
-        this.datesAll.splice(index, 1);
-      }
-    },
-    changeTab(){
-      console.log(this.$watch,'watch')
-    },
+
+      return this.date;
+    }
+  },
+  methods: {
     doubleClick() {},
     closePopup() {},
     onClearClicked(){
-    
-      this.datesAll = []
-      console.log(this.datesAll,'alo')
+      this.date = [];
+      this.dates = [];
     }
   },
   watch:{
