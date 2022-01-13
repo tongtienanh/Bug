@@ -1,16 +1,6 @@
 <template>
   <div>
-    <h1>alo</h1>
-     <table
-          style="
-        width: 100%;
-        background: white;
-        text-align: left;
-        border-collapse: separate;
-        border-spacing: 0;
-        table-layout: fixed;
-      "
-    >
+     <table>
         <thead class="ant-table-thead">
          <tr class="table-header">
           <th class="ant-table-cell-fix-left" style="background: #F2F2F2">
